@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CleanExampleKT"
 include(":app")
- 
+include(":user")
