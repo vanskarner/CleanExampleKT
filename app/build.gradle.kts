@@ -64,6 +64,7 @@ dependencies {
     //noinspection GradleDependency
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation(project(":user"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
