@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">CleanExampleKT</string>
+    <string name="label_save">Save</string>
+    <string name="label_age">Age</string>
+    <string name="label_name">Name</string>
+    <string name="label_search">Search</string>
+    <string name="label_id_user">User Id</string>
+    <string name="label_list">List</string>
+    <string name="msg_user_added">Added user</string>
+    <string name="label_error">Error</string>
+    <string name="label_user">User</string>
+    <string name="label_info">Info</string>
+    <string name="label_users">Users</string>
+    <string name="label_id">Id</string>
+    <string name="msg_unknown_error">Something went wrong</string>
+    <string name="msg_invalid_name">The name is invalid</string>
+    <string name="msg_invalid_age">Age must be 18 or older</string>
+    <string name="msg_user_not_found">The user searched does not exist</string>
 </resources>
