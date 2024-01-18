@@ -42,4 +42,13 @@ class DefaultErrorFilterTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun filter_whenIsUnknown_shouldMatchMessage() {
+        val expected = context.getString(R.string.msg_unknown_error)
+        val unmappedException = RuntimeException("Not Mapped")
+        val actual = errorFilter.filter(unmappedException)
+
+        assertEquals(expected, actual)
+    }
+
 }
