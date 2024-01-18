@@ -37,9 +37,9 @@ class DefaultErrorFilterTest {
             appendLine(context.getString(R.string.msg_invalid_age))
         }
         val types = listOf(TypeInvalidation.InvalidName, TypeInvalidation.InvalidAge)
-        val actual = errorFilter.filter(UserBusinessLogicError.Invalidations(types))
+        val actual = errorFilter.filter(UserBusinessLogicError.Invalidation(types))
 
         assertEquals(expected, actual)
     }
-    
+
 }

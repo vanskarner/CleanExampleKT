@@ -38,10 +38,10 @@ class SaveUserCaseTest {
             age = 32
         )
         val exception = useCase.execute(userExpected).exceptionOrNull()
-        val invalidations = exception as UserBusinessLogicError.Invalidations
+        val invalidation = exception as UserBusinessLogicError.Invalidation
 
-        assertEquals(1, invalidations.types.size)
-        assertTrue(invalidations.types[0] is TypeInvalidation.InvalidName)
+        assertEquals(1, invalidation.types.size)
+        assertTrue(invalidation.types[0] is TypeInvalidation.InvalidName)
     }
 
     @Test
@@ -51,10 +51,10 @@ class SaveUserCaseTest {
             age = 0
         )
         val exception = useCase.execute(userExpected).exceptionOrNull()
-        val invalidations = exception as UserBusinessLogicError.Invalidations
+        val invalidation = exception as UserBusinessLogicError.Invalidation
 
-        assertEquals(1, invalidations.types.size)
-        assertTrue(invalidations.types[0] is TypeInvalidation.InvalidAge)
+        assertEquals(1, invalidation.types.size)
+        assertTrue(invalidation.types[0] is TypeInvalidation.InvalidAge)
     }
 
     @Test
@@ -65,11 +65,11 @@ class SaveUserCaseTest {
                 age = 0
             )
             val exception = useCase.execute(userExpected).exceptionOrNull()
-            val invalidations = exception as UserBusinessLogicError.Invalidations
+            val invalidation = exception as UserBusinessLogicError.Invalidation
 
-            assertEquals(2, invalidations.types.size)
-            assertTrue(invalidations.types[0] is TypeInvalidation.InvalidName)
-            assertTrue(invalidations.types[1] is TypeInvalidation.InvalidAge)
+            assertEquals(2, invalidation.types.size)
+            assertTrue(invalidation.types[0] is TypeInvalidation.InvalidName)
+            assertTrue(invalidation.types[1] is TypeInvalidation.InvalidAge)
         }
 
 }

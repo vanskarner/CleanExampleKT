@@ -7,7 +7,7 @@ internal class ValidateUserUseCase @Inject constructor() {
     fun execute(userData: UserData): Result<UserData> {
         val exceptionList = validateUserData(userData)
         return if (exceptionList.isNotEmpty())
-            Result.failure(UserBusinessLogicError.Invalidations(exceptionList))
+            Result.failure(UserBusinessLogicError.Invalidation(exceptionList))
         else Result.success(userData)
     }
 

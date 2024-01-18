@@ -14,7 +14,7 @@ sealed class UserBusinessLogicError : RuntimeException() {
      *
      */
     @Suppress("unused")
-    class Invalidations(val types: List<TypeInvalidation>) : UserBusinessLogicError()
+    class Invalidation(val types: List<TypeInvalidation>) : UserBusinessLogicError()
 
 }
 

@@ -17,7 +17,7 @@ interface UserComponent {
      * @return [Result], encapsulates success or failure.
      * - [Result.onSuccess], user recorded successfully
      * - [Result.onFailure], one of the following errors occurred:
-     * [UserBusinessLogicError.Invalidations]
+     * [UserBusinessLogicError.Invalidation]
      */
     suspend fun save(userData: UserData): Result<Unit>
 

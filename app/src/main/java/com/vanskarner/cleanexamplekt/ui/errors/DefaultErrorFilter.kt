@@ -22,7 +22,7 @@ class DefaultErrorFilter @Inject constructor(
 
             is UserBusinessLogicError -> {
                 when (throwable) {
-                    is UserBusinessLogicError.Invalidations -> buildString {
+                    is UserBusinessLogicError.Invalidation -> buildString {
                         throwable.types.forEach {
                             appendLine(
                                 when (it) {
