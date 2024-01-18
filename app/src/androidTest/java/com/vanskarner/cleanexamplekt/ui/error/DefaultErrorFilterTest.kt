@@ -31,7 +31,7 @@ class DefaultErrorFilterTest {
     }
 
     @Test
-    fun filter_whenIsInvalidations_shouldMatchMessage() {
+    fun filter_whenIsInvalidation_shouldMatchMessage() {
         val expected = buildString {
             appendLine(context.getString(R.string.msg_invalid_name))
             appendLine(context.getString(R.string.msg_invalid_age))
