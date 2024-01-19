@@ -67,6 +67,10 @@ dependencies {
     implementation(project(":user"))
 
     testImplementation("junit:junit:4.13.2")
+    //noinspection GradleDependency
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    //noinspection GradleDependency
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
