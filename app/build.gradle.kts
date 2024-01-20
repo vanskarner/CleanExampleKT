@@ -17,7 +17,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.vanskarner.cleanexamplekt.main.CustomTestRunner"
     }
 
     buildTypes {
@@ -37,6 +37,9 @@ android {
         jvmTarget = "1.8"
     }
     viewBinding {
+        enable = true
+    }
+    dataBinding{
         enable = true
     }
     packaging {
@@ -73,5 +76,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    //noinspection GradleDependency
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
