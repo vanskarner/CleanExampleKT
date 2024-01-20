@@ -19,14 +19,14 @@ class UserViewModel @Inject constructor(
     private val _progress = MutableLiveData<Boolean>()
     private val _user = MutableLiveData<UserModel>()
     private val _userList = MutableLiveData<List<UserModel>>()
-    private val _msgUserAdded = MutableLiveData<Unit>()
-    private val _msgError = MutableLiveData<String>()
+    private val _addedUserMsg = MutableLiveData<Unit>()
+    private val _errorMsg = MutableLiveData<String>()
 
     val progress: LiveData<Boolean> = _progress
     val user: LiveData<UserModel> = _user
     val userList: LiveData<List<UserModel>> = _userList
-    val msgUserAdded: LiveData<Unit> = _msgUserAdded
-    val msgError: LiveData<String> = _msgError
+    val addedUserMsg: LiveData<Unit> = _addedUserMsg
+    val errorMsg: LiveData<String> = _errorMsg
 
     fun saveUser(name: String, age: Int) {
         viewModelScope.launch {
@@ -37,8 +37,8 @@ class UserViewModel @Inject constructor(
             )
             userComponent.save(userData)
                 .apply { _progress.value = false }
-                .onSuccess { _msgUserAdded.value = it }
-                .onFailure { _msgError.value = errorFilter.filter(it) }
+                .onSuccess { _addedUserMsg.value = it }
+                .onFailure { _errorMsg.value = errorFilter.filter(it) }
         }
     }
 
@@ -49,7 +49,6 @@ class UserViewModel @Inject constructor(
                 .map { list -> list.map { it.toModel() } }
                 .apply { _progress.value = false }
                 .onSuccess { _userList.value = it }
-                .onFailure { _msgError.value = errorFilter.filter(it) }
         }
     }
 
@@ -60,7 +59,7 @@ class UserViewModel @Inject constructor(
                 .map { it.toModel() }
                 .apply { _progress.value = false }
                 .onSuccess { _user.value = it }
-                .onFailure { _msgError.value = errorFilter.filter(it) }
+                .onFailure { _errorMsg.value = errorFilter.filter(it) }
         }
     }
 

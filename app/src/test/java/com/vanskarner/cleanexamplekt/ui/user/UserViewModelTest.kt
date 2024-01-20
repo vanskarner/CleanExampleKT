@@ -51,7 +51,7 @@ class UserViewModelTest {
     fun `saveUser when is Success should show msg user added`() = runTest {
         val observerAddedUserMsg = mock<Observer<Unit>>()
         val observerProgress = mock<Observer<Boolean>>()
-        viewModel.msgUserAdded.observeForever(observerAddedUserMsg)
+        viewModel.addedUserMsg.observeForever(observerAddedUserMsg)
         viewModel.progress.observeForever(observerProgress)
         val userExample = UserData(
             name = "Luis",
@@ -72,7 +72,7 @@ class UserViewModelTest {
     fun `saveUser when is Failure should show error msg`() = runTest {
         val observerErrorMsg = mock<Observer<String>>()
         val observerProgress = mock<Observer<Boolean>>()
-        viewModel.msgError.observeForever(observerErrorMsg)
+        viewModel.errorMsg.observeForever(observerErrorMsg)
         viewModel.progress.observeForever(observerProgress)
         val userExample = UserData(
             name = "Luis",
@@ -109,25 +109,6 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `userList when is Failure should show error msg`() = runTest {
-        val observerErrorMsg = mock<Observer<String>>()
-        val observerProgress = mock<Observer<Boolean>>()
-        viewModel.msgError.observeForever(observerErrorMsg)
-        viewModel.progress.observeForever(observerProgress)
-        val exceptionExample = RuntimeException("Some Exception")
-        `when`(errorFilter.filter(exceptionExample)).thenReturn(exceptionExample.message)
-        `when`(userComponent.getList()).thenReturn(Result.failure(exceptionExample))
-
-        viewModel.userList()
-        advanceUntilIdle()
-
-        verify(observerProgress).onChanged(true)
-        verify(userComponent).getList()
-        verify(observerProgress).onChanged(false)
-        verify(observerErrorMsg).onChanged(exceptionExample.message ?: "")
-    }
-
-    @Test
     fun `findUser when is Success should show user`() = runTest {
         val observerUser = mock<Observer<UserModel>>()
         val observerProgress = mock<Observer<Boolean>>()
@@ -149,7 +130,7 @@ class UserViewModelTest {
     fun `findUser when is Failure should show error`() = runTest {
         val observerErrorMsg = mock<Observer<String>>()
         val observerProgress = mock<Observer<Boolean>>()
-        viewModel.msgError.observeForever(observerErrorMsg)
+        viewModel.errorMsg.observeForever(observerErrorMsg)
         viewModel.progress.observeForever(observerProgress)
         val userExample = UserData(1, "Luis", 32)
         val exceptionExample = RuntimeException("Some exception")

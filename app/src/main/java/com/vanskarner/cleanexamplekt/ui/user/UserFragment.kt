@@ -50,8 +50,8 @@ class UserFragment : Fragment() {
         viewModel.progress.observe(viewLifecycleOwner) { setProgressVisibility(it) }
         viewModel.user.observe(viewLifecycleOwner) { showUser(it) }
         viewModel.userList.observe(viewLifecycleOwner) { showUserList(it) }
-        viewModel.msgUserAdded.observe(viewLifecycleOwner) { showAddedUserMsg() }
-        viewModel.msgError.observe(viewLifecycleOwner) { showError(it) }
+        viewModel.addedUserMsg.observe(viewLifecycleOwner) { showAddedUserMsg() }
+        viewModel.errorMsg.observe(viewLifecycleOwner) { showError(it) }
     }
 
     private fun showUserList(userList: List<UserModel>) {
