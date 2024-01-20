@@ -37,7 +37,7 @@ class UserViewModel @Inject constructor(
             )
             userComponent.save(userData)
                 .apply { _progress.value = false }
-                .onSuccess { _msgUserAdded.value = Unit }
+                .onSuccess { _msgUserAdded.value = it }
                 .onFailure { _msgError.value = errorFilter.filter(it) }
         }
     }
