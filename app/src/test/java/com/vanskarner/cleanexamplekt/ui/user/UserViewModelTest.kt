@@ -48,10 +48,10 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `save User when is Success should show msg user added`() = runTest {
-        val observerMsgUserAdded = mock<Observer<Unit>>()
+    fun `saveUser when is Success should show msg user added`() = runTest {
+        val observerAddedUserMsg = mock<Observer<Unit>>()
         val observerProgress = mock<Observer<Boolean>>()
-        viewModel.msgUserAdded.observeForever(observerMsgUserAdded)
+        viewModel.msgUserAdded.observeForever(observerAddedUserMsg)
         viewModel.progress.observeForever(observerProgress)
         val userExample = UserData(
             name = "Luis",
@@ -65,11 +65,11 @@ class UserViewModelTest {
         verify(observerProgress).onChanged(true)
         verify(userComponent).save(userExample)
         verify(observerProgress).onChanged(false)
-        verify(observerMsgUserAdded).onChanged(Unit)
+        verify(observerAddedUserMsg).onChanged(Unit)
     }
 
     @Test
-    fun `save User when is Failure should show error msg`() = runTest {
+    fun `saveUser when is Failure should show error msg`() = runTest {
         val observerErrorMsg = mock<Observer<String>>()
         val observerProgress = mock<Observer<Boolean>>()
         viewModel.msgError.observeForever(observerErrorMsg)
@@ -128,7 +128,7 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `find user when is Success should show user`() = runTest {
+    fun `findUser when is Success should show user`() = runTest {
         val observerUser = mock<Observer<UserModel>>()
         val observerProgress = mock<Observer<Boolean>>()
         viewModel.user.observeForever(observerUser)
@@ -146,7 +146,7 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `find user when is Failure should show error`() = runTest {
+    fun `findUser when is Failure should show error`() = runTest {
         val observerErrorMsg = mock<Observer<String>>()
         val observerProgress = mock<Observer<Boolean>>()
         viewModel.msgError.observeForever(observerErrorMsg)
