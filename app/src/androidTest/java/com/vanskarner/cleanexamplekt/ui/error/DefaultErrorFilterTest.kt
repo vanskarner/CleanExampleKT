@@ -15,6 +15,7 @@ import com.vanskarner.user.persistence.UserPersistenceError
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import javax.inject.Provider
 
 class DefaultErrorFilterTest {
     private lateinit var context: Context
@@ -23,10 +24,11 @@ class DefaultErrorFilterTest {
     @Before
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
-        val defaultError = UnexpectedError(context)
-        val errorMap = HashMap<Class<*>, ErrorView<*>>()
-        errorMap[UserBusinessLogicError.Invalidation::class.java] = UserValidationError(context)
-        errorMap[UserPersistenceError.NotFound.javaClass] = UserNotExistError(context)
+        val defaultError = Provider { UnexpectedError(context) }
+        val errorMap = HashMap<Class<*>, Provider<ErrorView<*>>>()
+        errorMap[UserBusinessLogicError.Invalidation::class.java] =
+            Provider { UserValidationError(context) }
+        errorMap[UserPersistenceError.NotFound.javaClass] = Provider { UserNotExistError(context) }
 
         errorFilter = DefaultErrorFilter(defaultError, errorMap)
     }

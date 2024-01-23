@@ -26,7 +26,7 @@ import kotlinx.coroutines.test.runTest
 internal fun ViewInteraction.waitForDisplayed(
     testScope: TestScope,
     verificationIntervalInMillis: Long = 100,
-    timeoutMillis: Long = 5000
+    timeoutMillis: Long = 7000
 ) {
     val endTime = System.currentTimeMillis() + timeoutMillis
     do {
