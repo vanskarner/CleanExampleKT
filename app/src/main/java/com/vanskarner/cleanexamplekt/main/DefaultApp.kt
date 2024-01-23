@@ -1,4 +1,4 @@
-package com.vanskarner.cleanexamplekt.di
+package com.vanskarner.cleanexamplekt.main
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
