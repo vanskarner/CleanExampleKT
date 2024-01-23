@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 internal class DefaultErrorFilter @Inject constructor(
     private val defaultError: UnexpectedError,
-    private val errorMap: Map<Class<*>, @JvmSuppressWildcards ErrorView<out Throwable>>
+    private val errorMap: Map<Class<*>, @JvmSuppressWildcards ErrorView<*>>
 ) : ErrorFilter {
 
     override fun filter(throwable: Throwable) = getErrorView(throwable).getMsg(throwable)
