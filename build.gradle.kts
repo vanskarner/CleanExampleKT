@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id("com.android.application") version "8.1.0" apply false
@@ -12,7 +14,7 @@ subprojects {
     }
 }
 allprojects {
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class) {
+    tasks.withType(KotlinCompile::class.java) {
         kotlinOptions {
             jvmTarget = "1.8"
         }

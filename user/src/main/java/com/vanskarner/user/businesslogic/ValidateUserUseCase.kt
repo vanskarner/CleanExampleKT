@@ -19,8 +19,8 @@ internal class ValidateUserUseCase @Inject constructor() {
     }
 
     private fun validateName(userData: UserData, errorList: MutableList<TypeInvalidation>) {
-        if (userData.name.isEmpty() || userData.name.isBlank())
-            errorList.add(TypeInvalidation.InvalidName)
+        val isValid = Regex("^[a-zA-Z-' ]+\$").matches(userData.name)
+        if (!isValid) errorList.add(TypeInvalidation.InvalidName)
     }
 
     private fun validateAge(userData: UserData, errorList: MutableList<TypeInvalidation>) {
