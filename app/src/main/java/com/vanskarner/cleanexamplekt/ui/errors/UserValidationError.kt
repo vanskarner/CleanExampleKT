@@ -7,7 +7,7 @@ import com.vanskarner.user.businesslogic.UserBusinessLogicError
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class UserValidationError @Inject constructor(
+internal class UserValidationError @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ErrorView<UserBusinessLogicError.Invalidation> {
 

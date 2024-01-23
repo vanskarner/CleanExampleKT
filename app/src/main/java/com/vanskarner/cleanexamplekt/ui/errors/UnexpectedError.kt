@@ -5,7 +5,7 @@ import com.vanskarner.cleanexamplekt.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class UnexpectedError @Inject constructor(
+internal class UnexpectedError @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ErrorView<Throwable> {
 

@@ -8,11 +8,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Suppress("unused")
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class TypesErrorModule {
+internal abstract class TypesErrorModule {
 
     @Binds
     @IntoMap
@@ -23,5 +24,9 @@ abstract class TypesErrorModule {
     @IntoMap
     @ClassKey(UserBusinessLogicError.Invalidation::class)
     abstract fun bindValidationError(error: UserValidationError): ErrorView<*>
+
+    @Binds
+    @Singleton
+    abstract fun bindErrorFilter(filter: DefaultErrorFilter): ErrorFilter
 
 }

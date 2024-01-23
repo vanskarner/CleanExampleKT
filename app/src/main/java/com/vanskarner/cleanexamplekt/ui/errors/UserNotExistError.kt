@@ -6,7 +6,7 @@ import com.vanskarner.user.persistence.UserPersistenceError
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class UserNotExistError @Inject constructor(
+internal class UserNotExistError @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ErrorView<UserPersistenceError.NotFound> {
 
