@@ -17,6 +17,7 @@ import com.vanskarner.cleanexamplekt.R
 import com.vanskarner.cleanexamplekt.ui.MainActivity
 import com.vanskarner.cleanexamplekt.util.CustomRecyclerMatcher.Companion.withRecyclerViewItemCount
 import com.vanskarner.cleanexamplekt.util.DataBindingIdlingResource
+import com.vanskarner.cleanexamplekt.util.waitForDisplayed
 import com.vanskarner.user.UserComponent
 import com.vanskarner.user.businesslogic.UserData
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -57,19 +58,19 @@ class UserFragmentTest {
     }
 
     @Test
-    fun pressSave_withValidUser_showAddedUserMsg() {
+    fun pressSave_withValidUser_showAddedUserMsg() = runTest {
         onView(withId(R.id.edtName))
             .perform(typeText("Luis"), pressKey(KeyEvent.KEYCODE_ENTER))
         onView(withId(R.id.edtAge))
             .perform(typeText("32"))
         onView(withId(R.id.btnSave)).perform(click())
-        Thread.sleep(2000)
-        onView(withText(R.string.label_info)).check(matches(isDisplayed()))
+
+        onView(withText(R.string.label_info)).waitForDisplayed(this)
         onView(withText(R.string.msg_user_added)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun pressSave_withInvalidUser_showErrorMsg() {
+    fun pressSave_withInvalidUser_showErrorMsg() = runTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val errorMsg = buildString {
             appendLine(appContext.getString(R.string.msg_invalid_name))
@@ -77,8 +78,8 @@ class UserFragmentTest {
         }
 
         onView(withId(R.id.btnSave)).perform(click())
-        Thread.sleep(2000)
-        onView(withText(R.string.label_error)).check(matches(isDisplayed()))
+
+        onView(withText(R.string.label_error)).waitForDisplayed(this)
         onView(withId(R.id.txtErrorMsg)).check(matches(withText(errorMsg)))
     }
 
@@ -87,19 +88,18 @@ class UserFragmentTest {
         val expectedNumberItems = 2
         userComponent.save(UserData(name = "Luis", age = 32))
         userComponent.save(UserData(name = "Juan", age = 33))
-        onView(withId(R.id.btnList)).perform(click())
-        Thread.sleep(2000)
 
-        onView(withText(R.string.label_users)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnList)).perform(click())
+
+        onView(withText(R.string.label_users)).waitForDisplayed(this)
         onView(withId(R.id.rcvItems)).check(matches(withRecyclerViewItemCount(expectedNumberItems)))
     }
 
     @Test
-    fun pressList_noRegisteredUsers_showEmptyList() {
+    fun pressList_noRegisteredUsers_showEmptyList() = runTest {
         onView(withId(R.id.btnList)).perform(click())
-        Thread.sleep(2000)
 
-        onView(withText(R.string.label_users)).check(matches(isDisplayed()))
+        onView(withText(R.string.label_users)).waitForDisplayed(this)
         onView(withId(R.id.rcvItems)).check(matches(withRecyclerViewItemCount(0)))
     }
 
@@ -112,19 +112,18 @@ class UserFragmentTest {
         onView(withId(R.id.edtIdUser))
             .perform(typeText("$userId"), pressKey(KeyEvent.KEYCODE_ENTER))
         onView(withId(R.id.btnFind)).perform(click())
-        Thread.sleep(3000)
-        onView(withText(R.string.label_user)).check(matches(isDisplayed()))
+
+        onView(withText(R.string.label_user)).waitForDisplayed(this)
         onView(withId(R.id.txtId)).check(matches(withText("$userId")))
         onView(withId(R.id.txtName)).check(matches(withText(userExample.name)))
         onView(withId(R.id.txtAge)).check(matches(withText("${userExample.age}")))
     }
 
     @Test
-    fun pressSearch_withInvalidId_showErrorMsg() {
+    fun pressSearch_withInvalidId_showErrorMsg() = runTest {
         onView(withId(R.id.btnFind)).perform(click())
-        Thread.sleep(2000)
 
-        onView(withText(R.string.label_error)).check(matches(isDisplayed()))
+        onView(withText(R.string.label_error)).waitForDisplayed(this)
         onView(withText(R.string.msg_user_not_found)).check(matches(isDisplayed()))
     }
 
