@@ -3,7 +3,7 @@ package com.vanskarner.cleanexamplekt.ui.user
 import androidx.recyclerview.widget.RecyclerView
 import com.vanskarner.cleanexamplekt.databinding.ItemUserBinding
 
-class UserHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+internal class UserHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindView(item: UserModel) {
         binding.txtId.text = item.id.toString()

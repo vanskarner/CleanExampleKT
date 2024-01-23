@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class UserFragment : Fragment() {
+internal class UserFragment : Fragment() {
 
     @Inject
     lateinit var progressDialog: ProgressDialog

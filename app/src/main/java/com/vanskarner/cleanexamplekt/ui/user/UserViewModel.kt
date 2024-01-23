@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(
+internal class UserViewModel @Inject constructor(
     private val userComponent: UserComponent,
     private val errorFilter: ErrorFilter
 ) : ViewModel() {

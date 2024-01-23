@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vanskarner.cleanexamplekt.databinding.ItemUserBinding
 import javax.inject.Inject
 
-class UserAdapter @Inject constructor() : RecyclerView.Adapter<UserHolder>() {
+internal class UserAdapter @Inject constructor() : RecyclerView.Adapter<UserHolder>() {
 
     private var list: MutableList<UserModel> = ArrayList()
 

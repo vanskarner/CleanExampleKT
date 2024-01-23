@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Suppress("unused")
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class UIModule {
+internal abstract class UIModule {
 
     @Binds
     @Singleton
