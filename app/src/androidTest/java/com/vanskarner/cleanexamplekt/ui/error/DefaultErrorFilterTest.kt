@@ -5,12 +5,16 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.vanskarner.cleanexamplekt.R
 import com.vanskarner.cleanexamplekt.ui.errors.DefaultErrorFilter
 import com.vanskarner.cleanexamplekt.ui.errors.ErrorFilter
+import com.vanskarner.cleanexamplekt.ui.errors.ErrorView
+import com.vanskarner.cleanexamplekt.ui.errors.UnexpectedError
+import com.vanskarner.cleanexamplekt.ui.errors.UserNotExistError
+import com.vanskarner.cleanexamplekt.ui.errors.UserValidationError
 import com.vanskarner.user.businesslogic.TypeInvalidation
 import com.vanskarner.user.businesslogic.UserBusinessLogicError
 import com.vanskarner.user.persistence.UserPersistenceError
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert.*
 
 class DefaultErrorFilterTest {
     private lateinit var context: Context
@@ -19,7 +23,12 @@ class DefaultErrorFilterTest {
     @Before
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
-        errorFilter = DefaultErrorFilter(context)
+        val defaultError = UnexpectedError(context)
+        val errorMap = HashMap<Class<*>, ErrorView<*>>()
+        errorMap[UserBusinessLogicError.Invalidation::class.java] = UserValidationError(context)
+        errorMap[UserPersistenceError.NotFound.javaClass] = UserNotExistError(context)
+
+        errorFilter = DefaultErrorFilter(defaultError, errorMap)
     }
 
     @Test
