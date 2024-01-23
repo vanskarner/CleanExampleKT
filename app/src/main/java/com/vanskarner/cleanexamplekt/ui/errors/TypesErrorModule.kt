@@ -17,11 +17,11 @@ abstract class TypesErrorModule {
     @Binds
     @IntoMap
     @ClassKey(UserPersistenceError.NotFound::class)
-    abstract fun bindNotFoundError(error: UserNotExistError): ErrorView<out Throwable>
+    abstract fun bindNotFoundError(error: UserNotExistError): ErrorView<*>
 
     @Binds
     @IntoMap
     @ClassKey(UserBusinessLogicError.Invalidation::class)
-    abstract fun bindValidationError(error: UserValidationError): ErrorView<out Throwable>
+    abstract fun bindValidationError(error: UserValidationError): ErrorView<*>
 
 }
