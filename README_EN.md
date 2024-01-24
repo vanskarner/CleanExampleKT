@@ -5,6 +5,10 @@
 
 Simple Android application in Kotlin that follows the best practices of **Martin, Robert C.**, in his book **Clean Architecture: A Craftsman's Guide to Software Structure and Design** (2017).
 
+<p align="center">
+  <img src="https://github.com/vanskarner/CleanExampleKT/assets/39975255/e9c17a8d-e476-4796-a43a-4a6b7ff159c9" alt="CleanArchitectureCover_2017" style="display: block; margin: auto">
+</p>
+
 This simplified example can be considered an extension of the more complete and documented repository, where the best practices behind software architecture are discussed in depth and can be found at [CleanMovie](https://github.com/vanskarner/CleanMovie/wiki).
 
 <p align="center">
